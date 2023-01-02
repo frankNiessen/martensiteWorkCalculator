@@ -1,5 +1,6 @@
 # martensiteWorkCalculator
 Mapping of the available work from martensite formation as a function of parent orientation and applied stress state
+The code options are evident from the extensively commented script files. 
 
 The method is based on the theory presented in
 
