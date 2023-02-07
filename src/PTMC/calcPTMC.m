@@ -8,6 +8,10 @@ for d2 = 1:2 %Solutions for invariant line
         k = k+1;                                                           %Increase counter
         l = M^(-1)*IN(:,d2); l = l/norm(l);
         x = M*IL(:,d1); x = x/norm(x);
+%        a = vrrotvec(IL(:,d1),IN(:,d2)); a = a(1:3)';  
+%        b = vrrotvec(x,l); b = b(1:3)'; 
+        a = cross(IL(:,d1),IN(:,d2))/norm(cross(IL(:,d1),IN(:,d2)));
+        b = cross(x,l)/norm(cross(x,l)); 
         a = vrrotvec(IL(:,d1),IN(:,d2)); a = a(1:3)';  
         b = vrrotvec(x,l); b = b(1:3)'; 
         PJP(:,:,k) = [IL(:,d1),IN(:,d2),a]/[x,l,b];                    %Rotation matrix
@@ -23,7 +27,7 @@ for d2 = 1:2 %Solutions for invariant line
         y = cross([0 1 0],H_a(k,:));                                         %Get arbitrary vector in habit plane
         d1 = (y'-inv(PSP(:,:,k))*y')/(SP*inv(PSP(:,:,k))*y');              %Direction of LIS 
         m1(k) = norm(d1);                                                  %Magnitude of LIS
-        alpha(k) = atand(m2(k)/2);                                         %Shear angle [°]
+        alpha(k) = atand(m2(k)/2);                                         %Shear angle [Â°]
         OR(:,:,k) = bTa*M*PSP(:,:,k)^(-1);                                 %Orientation Relationship matrix
         F(:,:,k) = eye(3) + m2(k)*d(:,k)*H_a(k,:);                         %Macroscopic deformation matrix
    end
