@@ -12,8 +12,6 @@ for d2 = 1:2 %Solutions for invariant line
 %        b = vrrotvec(x,l); b = b(1:3)'; 
         a = cross(IL(:,d1),IN(:,d2))/norm(cross(IL(:,d1),IN(:,d2)));
         b = cross(x,l)/norm(cross(x,l)); 
-        a = vrrotvec(IL(:,d1),IN(:,d2)); a = a(1:3)';  
-        b = vrrotvec(x,l); b = b(1:3)'; 
         PJP(:,:,k) = [IL(:,d1),IN(:,d2),a]/[x,l,b];                    %Rotation matrix
         % ***********************  Invariant line strain (PSP)
         PSP(:,:,k) = PJP(:,:,k)*M;                                                %Invariant line strain (PSP)       
@@ -27,7 +25,7 @@ for d2 = 1:2 %Solutions for invariant line
         y = cross([0 1 0],H_a(k,:));                                         %Get arbitrary vector in habit plane
         d1 = (y'-inv(PSP(:,:,k))*y')/(SP*inv(PSP(:,:,k))*y');              %Direction of LIS 
         m1(k) = norm(d1);                                                  %Magnitude of LIS
-        alpha(k) = atand(m2(k)/2);                                         %Shear angle [Â°]
+        alpha(k) = atand(m2(k)/2);                                         %Shear angle [°]
         OR(:,:,k) = bTa*M*PSP(:,:,k)^(-1);                                 %Orientation Relationship matrix
         F(:,:,k) = eye(3) + m2(k)*d(:,k)*H_a(k,:);                         %Macroscopic deformation matrix
    end
