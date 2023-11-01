@@ -8,6 +8,9 @@ end
 %Basis of A
 if isa(CS,'char')
    A = basis(CS,abc,mode); 
+elseif isa(CS,'latticeType')
+   CS = CS.char;
+   A = basis(CS,abc,mode);
 elseif isa(CS,'double')&& all(size(CS)==[3,3])
    A = CS;
 else
